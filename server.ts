@@ -9,7 +9,6 @@ const app = express();
 
 mongoose.connect("mongodb://localhost:27017/project",() => {
     console.log("server database established");
-    
 })
 
 app.listen(3000, () => {

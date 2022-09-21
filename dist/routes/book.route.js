@@ -25,5 +25,23 @@ exports.booksRoute.get('/all', (req, res) => __awaiter(void 0, void 0, void 0, f
         console.log(e);
     }
 }));
+exports.booksRoute.get("/author/:author", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const { author } = req.params;
+        const books = yield (0, book_controller_1.getBooksByAuthor)(author);
+        res.status(200).send(books);
+    }
+    catch (e) {
+        console.log(e);
+    }
+}));
 exports.booksRoute.get("/:id", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const { id } = req.params;
+        const book = yield (0, book_controller_1.getBookById)(id);
+        res.status(200).send(book);
+    }
+    catch (e) {
+        console.log(e);
+    }
 }));

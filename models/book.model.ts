@@ -6,6 +6,8 @@ interface IBook {
     author:string,
     description:string,
     quantity:number,
+    price:number,
+    sales:boolean,
     choose:boolean
 }
 
@@ -27,6 +29,16 @@ const bookSchema: Schema<IBook> = new mongoose.Schema<IBook>({
         type:Number,
         nullable:false,
         default:1
+    },
+    price: {
+        type:Number,
+        nullable:false,
+        default:5.5
+    },
+    sales: {
+        type:Boolean,
+        nullable:false,
+        default:false
     },
     choose: {
         type: Boolean,

@@ -23,6 +23,16 @@ const bookSchema = new mongoose_1.default.Schema({
         nullable: false,
         default: 1
     },
+    price: {
+        type: Number,
+        nullable: false,
+        default: 5.5
+    },
+    sales: {
+        type: Boolean,
+        nullable: false,
+        default: false
+    },
     choose: {
         type: Boolean,
         nullable: false,

@@ -10,7 +10,7 @@ const factorieBookCreate = () => {
     for (let i = 0; i < 10; i++) {
         book_model_1.default.create({
             title: faker_1.faker.lorem.lines(1),
-            author: faker_1.faker.name.firstName,
+            author: faker_1.faker.name.firstName(),
             description: faker_1.faker.lorem.lines(3)
         }).then(() => {
         }).catch(e => console.log(e));
