@@ -45,3 +45,23 @@ exports.booksRoute.get("/:id", (req, res) => __awaiter(void 0, void 0, void 0, f
         console.log(e);
     }
 }));
+exports.booksRoute.post("/create", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const { title, author, description, quantity, price, sales, choose } = req.body;
+        const book = yield (0, book_controller_1.createBook)(title, author, description, quantity, price, sales, choose);
+        res.status(200).send(book);
+    }
+    catch (e) {
+        console.log(e);
+    }
+}));
+exports.booksRoute.put("/update", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const { id, title, author, description, quantity, price, sales, choose } = req.body;
+        const book = yield (0, book_controller_1.updateBook)(id, title, author, description, quantity, price, sales, choose);
+        res.status(200).send(book);
+    }
+    catch (e) {
+        console.log(e);
+    }
+}));

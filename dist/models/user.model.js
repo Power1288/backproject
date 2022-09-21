@@ -53,3 +53,4 @@ userSchema.methods.verifyPassword = function (password) {
         return same;
     });
 };
+exports.default = mongoose_1.default.model("User", userSchema);

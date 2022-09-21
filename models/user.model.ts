@@ -46,3 +46,5 @@ userSchema.methods.verifyPassword = async function (password: string) : Promise<
     return same
 }
 
+export default mongoose.model("User",userSchema)
+
