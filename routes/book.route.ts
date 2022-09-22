@@ -42,9 +42,10 @@ booksRoute.post("/create",async (req: Request,res: Response) => {
     }
 })
 
-booksRoute.put("/update",async (req: Request, res:Response) => {
+booksRoute.put("/:id",async (req: Request, res:Response) => {
     try{
-        const { id, title, author, description, quantity, price, sales, choose} = req.body
+        const { id } : any = req.params
+        const { title, author, description, quantity, price, sales, choose} = req.body
         const book = await updateBook(id, title, author, description, quantity, price, sales, choose)
         res.status(200).send(book)
     }catch (e) {

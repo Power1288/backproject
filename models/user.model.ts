@@ -6,7 +6,7 @@ export enum EUserRole {
     admin = "admin"
 }
 
-interface IUser {
+export interface IUser {
     email:string,
     password:string,
     pseudo:string,

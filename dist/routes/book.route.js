@@ -55,9 +55,10 @@ exports.booksRoute.post("/create", (req, res) => __awaiter(void 0, void 0, void 
         console.log(e);
     }
 }));
-exports.booksRoute.put("/update", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+exports.booksRoute.put("/:id", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const { id, title, author, description, quantity, price, sales, choose } = req.body;
+        const { id } = req.params;
+        const { title, author, description, quantity, price, sales, choose } = req.body;
         const book = yield (0, book_controller_1.updateBook)(id, title, author, description, quantity, price, sales, choose);
         res.status(200).send(book);
     }
