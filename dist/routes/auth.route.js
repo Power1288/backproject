@@ -33,6 +33,8 @@ exports.userRoute.post('/register', (req, res) => __awaiter(void 0, void 0, void
         res.status(200).send(user);
     }
     catch (e) {
-        console.log(e);
+        console.log(e.message);
+        const { message } = e;
+        res.status(400).send(message);
     }
 }));

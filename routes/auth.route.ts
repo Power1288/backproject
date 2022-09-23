@@ -20,8 +20,10 @@ userRoute.post('/register',async (req:Request,res: Response) => {
         const { email, password, pseudo} = req.body
         const user = await register(email,password,pseudo)
         res.status(200).send(user)
-    }catch (e) {
-        console.log(e);
+    }catch (e:any) {
+        console.log(e.message)
+        const {message} = e
+        res.status(400).send(message)
         
     }
 })
