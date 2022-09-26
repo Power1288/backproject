@@ -16,14 +16,13 @@ userRoute.post('/login',async (req: Request,res: Response) => {
     }
 })
 
-userRoute.post('/register',async (req:Request,res: Response) => {
+userRoute.post('/register',async (req: Request,res: Response) => {
     try {
-        const { email, password, pseudo} = req.body
+        const { email, password, pseudo } = req.body
         const user = await register(email,password,pseudo)
         res.status(200).send(user)
     }catch (e:any) {
         const {message} = e
         res.status(400).send(message)
-        
     }
 })

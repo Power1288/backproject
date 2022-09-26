@@ -26,6 +26,7 @@ const login = (email, password) => __awaiter(void 0, void 0, void 0, function* (
     return {
         email: user.email,
         pseudo: user.pseudo,
+        role: user.role,
         token
     };
 });
