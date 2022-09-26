@@ -9,8 +9,9 @@ userRoute.post('/login',async (req: Request,res: Response) => {
 
         const user = await login(email, password)
         res.status(200).send(user)
-    }catch(e) {
-        console.log(e);
+    }catch(e:any) {
+        const { message } = e
+        res.status(400).send(message)
         
     }
 })
@@ -21,7 +22,6 @@ userRoute.post('/register',async (req:Request,res: Response) => {
         const user = await register(email,password,pseudo)
         res.status(200).send(user)
     }catch (e:any) {
-        console.log(e.message)
         const {message} = e
         res.status(400).send(message)
         

@@ -37,6 +37,10 @@ const bookSchema = new mongoose_1.default.Schema({
         type: Boolean,
         nullable: false,
         default: false
+    },
+    imageName: {
+        type: String,
+        nullable: true,
     }
 });
 exports.default = mongoose_1.default.model("Book", bookSchema);

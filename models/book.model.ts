@@ -8,7 +8,8 @@ interface IBook {
     quantity:number,
     price:number,
     sales:boolean,
-    choose:boolean
+    choose:boolean,
+    imageName:string
 }
 
 const bookSchema: Schema<IBook> = new mongoose.Schema<IBook>({
@@ -44,6 +45,10 @@ const bookSchema: Schema<IBook> = new mongoose.Schema<IBook>({
         type: Boolean,
         nullable:false,
         default:false
+    },
+    imageName: {
+        type:String,
+        nullable:true,
     }
 })
 
