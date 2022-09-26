@@ -1,35 +1,20 @@
-import userModel, { IUser } from "../models/user.model"
-import jwt from "jsonwebtoken"
+import userModel from "../models/user.model"
 
-export const login = async (email: string, password: string) => {
-    const user = await userModel.findOne({email})
-    
-    if (!user) throw new Error("Une erreur est survenue")
+export const getAllUsers = () => {
 
-    const same = user.verifyPassword(password)
-    
-    if (!same) throw new Error ("Mot de passe ou email invalide")
+    const usersList : any = []
+    return userModel.find({}).then(users => {
+        if (!users) throw new Error("Aucun utilisateur de trouvé")
 
-    const token = jwt.sign({id:user._id},'power',{expiresIn:"1h"})
-
-    return {
-        email:user.email,
-        pseudo:user.pseudo,
-        role:user.role,
-        token
-    }
-}
-
-export const register = async (email: string,password: string,pseudo: string) => {
-    const user = await userModel.findOne({email})
-    
-    if (user) throw new Error("Email already exist")
-
-    const newUser = await userModel.create({
-        email,
-        password,
-        pseudo
+        for (const user of users) {
+            const actualUser = {
+                id: user._id,
+                email: user.email,
+                pseudo: user.pseudo,
+                role: user.role
+            }
+            usersList.push(actualUser)
+        }
+        return usersList
     })
-
-    return newUser
 }

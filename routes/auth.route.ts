@@ -1,9 +1,9 @@
 import express, {Request, Response, Router} from "express"
-import { login, register } from "../controllers/user.controller"
+import { login, register } from "../controllers/auth.controller"
 
-export const userRoute: Router = express.Router()
+export const authRoute: Router = express.Router()
 
-userRoute.post('/login',async (req: Request,res: Response) => {
+authRoute.post('/login',async (req: Request,res: Response) => {
     try {
         const { email , password } = req.body
 
@@ -16,7 +16,7 @@ userRoute.post('/login',async (req: Request,res: Response) => {
     }
 })
 
-userRoute.post('/register',async (req: Request,res: Response) => {
+authRoute.post('/register',async (req: Request,res: Response) => {
     try {
         const { email, password, pseudo } = req.body
         const user = await register(email,password,pseudo)
