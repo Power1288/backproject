@@ -14,6 +14,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const user_controller_1 = require("../controllers/user.controller");
+const admin_middleware_1 = require("../middlewares/admin.middleware");
 const userRoute = express_1.default.Router();
 userRoute.get("/all", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
@@ -23,6 +24,17 @@ userRoute.get("/all", (req, res) => __awaiter(void 0, void 0, void 0, function* 
     catch (e) {
         const { message } = e;
         res.status(400).json(message);
+    }
+}));
+userRoute.delete("/:id", admin_middleware_1.verifyAutorization, (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const { id } = req.params;
+        const user = yield (0, user_controller_1.deleteUserById)(id);
+        res.status(200).json(user);
+    }
+    catch (e) {
+        const { messagge } = e;
+        res.status(400).json(messagge);
     }
 }));
 exports.default = userRoute;

@@ -18,3 +18,12 @@ export const getAllUsers = () => {
         return usersList
     })
 }
+
+export const deleteUserById = (userId: string) => {
+   return userModel.findOne({_id:userId}).then(user => {
+        if (!user) {
+           throw new Error("User unvailable");
+        }
+        user.delete()
+    })
+}
