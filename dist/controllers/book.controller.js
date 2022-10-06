@@ -5,6 +5,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.updateBook = exports.createBook = exports.getBooksByAuthor = exports.getBookById = exports.getAllBooks = void 0;
 const book_model_1 = __importDefault(require("../models/book.model"));
+/**
+ *
+ * this function getAllBooks
+ *
+ * @returns books
+ */
 const getAllBooks = () => {
     return book_model_1.default.find({}).then(books => {
         if (!books)
@@ -63,6 +69,18 @@ const createBook = (title, author, description, quantity, price, sales, choose) 
     });
 };
 exports.createBook = createBook;
+/**
+ *
+ * @param id
+ * @param title
+ * @param author
+ * @param description
+ * @param quantity
+ * @param price
+ * @param sales
+ * @param choose
+ * @returns
+ */
 const updateBook = (id, title, author, description, quantity, price, sales, choose) => {
     return book_model_1.default.findOneAndUpdate({ _id: id }, {
         title,

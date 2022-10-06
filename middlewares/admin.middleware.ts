@@ -2,8 +2,16 @@ import { NextFunction, Request, Response } from "express"
 import userModel, { EUserRole } from "../models/user.model"
 import  jwt  from "jsonwebtoken"
 
+
+/**
+ * 
+ * @param req 
+ * @param res 
+ * @param next 
+ * @returns 
+ */
 export const verifyAutorization = (req:Request, res: Response, next: NextFunction) => {
-    const {token} = req.body
+    const {token} = req.body.token ? req.body : req.headers
 
     const {id} : any = jwt.verify(token,"power")
 

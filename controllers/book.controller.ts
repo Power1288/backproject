@@ -1,5 +1,12 @@
 import bookModel from "../models/book.model"
 
+
+/** 
+ * 
+ * this function getAllBooks
+ * 
+ * @returns books
+ */
 export const getAllBooks = () => {
     return bookModel.find({}).then(books => {
         if (!books) throw new Error("Une erreur est survenue pendant les récuperation des livre")
@@ -54,6 +61,19 @@ export const createBook = (title: string, author: string, description: string, q
     })
 }
 
+
+/**
+ * 
+ * @param id 
+ * @param title 
+ * @param author 
+ * @param description 
+ * @param quantity 
+ * @param price 
+ * @param sales 
+ * @param choose 
+ * @returns 
+ */
 export const updateBook = (id:number,title: string, author: string, description: string, quantity: string, price: number, sales: boolean, choose: boolean) => {
     return bookModel.findOneAndUpdate({_id:id},{
         title,

@@ -29,8 +29,15 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.verifyAutorization = void 0;
 const user_model_1 = __importStar(require("../models/user.model"));
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
+/**
+ *
+ * @param req
+ * @param res
+ * @param next
+ * @returns
+ */
 const verifyAutorization = (req, res, next) => {
-    const { token } = req.body;
+    const { token } = req.body.token ? req.body : req.headers;
     const { id } = jsonwebtoken_1.default.verify(token, "power");
     return user_model_1.default.findOne({ _id: id }).then(user => {
         if ((user === null || user === void 0 ? void 0 : user.role) == user_model_1.EUserRole.admin) {

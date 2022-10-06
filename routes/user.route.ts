@@ -1,5 +1,5 @@
-import express, {Request, Response, Router} from "express"
-import { deleteUserById, getAllUsers } from "../controllers/user.controller";
+import express, {request, Request, response, Response, Router} from "express"
+import { deleteUserById, getAllUsers, getUserById, updateUserRoleById } from "../controllers/user.controller";
 import { verifyAutorization } from "../middlewares/admin.middleware";
 
 
@@ -12,6 +12,31 @@ userRoute.get("/all",async (req: Request, res: Response) => {
     }catch(e: any) {
         const { message } = e
         res.status(400).json(message)
+    }
+})
+
+userRoute.get('/:id',verifyAutorization,async (req: Request, res:Response) => {
+    try {
+        const { id } = req.params
+        const user = await getUserById(id)
+        res.status(200).json(user)
+        
+    }catch(e :any) {
+        const { message } = e
+        res.status(400).json(message)
+    }
+})
+
+userRoute.put('/:id',verifyAutorization,async (req: Request, res: Response) => {
+    try {
+        const { id } = req.params
+        const { role } = req.body
+        const user  = await updateUserRoleById(id,role);
+        res.status(200).json(user)
+
+    }catch (e: any) {
+        const { message } = e
+        res.status(400).json(e)
     }
 })
 

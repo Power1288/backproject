@@ -15,6 +15,13 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.register = exports.login = void 0;
 const user_model_1 = __importDefault(require("../models/user.model"));
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
+/**
+ * this function as a login user
+ *
+ * @param email
+ * @param password
+ * @returns
+ */
 const login = (email, password) => __awaiter(void 0, void 0, void 0, function* () {
     const user = yield user_model_1.default.findOne({ email });
     if (!user)
@@ -31,6 +38,14 @@ const login = (email, password) => __awaiter(void 0, void 0, void 0, function* (
     };
 });
 exports.login = login;
+/**
+ * this function as a register user
+ *
+ * @param email
+ * @param password
+ * @param pseudo
+ * @returns
+ */
 const register = (email, password, pseudo) => __awaiter(void 0, void 0, void 0, function* () {
     const user = yield user_model_1.default.findOne({ email });
     if (user)

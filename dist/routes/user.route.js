@@ -26,6 +26,29 @@ userRoute.get("/all", (req, res) => __awaiter(void 0, void 0, void 0, function* 
         res.status(400).json(message);
     }
 }));
+userRoute.get('/:id', admin_middleware_1.verifyAutorization, (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const { id } = req.params;
+        const user = yield (0, user_controller_1.getUserById)(id);
+        res.status(200).json(user);
+    }
+    catch (e) {
+        const { message } = e;
+        res.status(400).json(message);
+    }
+}));
+userRoute.put('/:id', admin_middleware_1.verifyAutorization, (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const { id } = req.params;
+        const { role } = req.body;
+        const user = yield (0, user_controller_1.updateUserRoleById)(id, role);
+        res.status(200).json(user);
+    }
+    catch (e) {
+        const { message } = e;
+        res.status(400).json(e);
+    }
+}));
 userRoute.delete("/:id", admin_middleware_1.verifyAutorization, (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { id } = req.params;

@@ -2,6 +2,9 @@ import { faker } from '@faker-js/faker';
 import bookModel from '../models/book.model';
 
 
+/**
+ * generate an factice book
+ */
 export const factorieBookCreate = () => {
     for (let i = 0; i < 10; i++) {
         bookModel.create({

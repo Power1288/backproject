@@ -6,6 +6,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.factorieBookCreate = void 0;
 const faker_1 = require("@faker-js/faker");
 const book_model_1 = __importDefault(require("../models/book.model"));
+/**
+ * generate an factice book
+ */
 const factorieBookCreate = () => {
     for (let i = 0; i < 10; i++) {
         book_model_1.default.create({
